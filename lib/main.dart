@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -18,7 +17,7 @@ class HomeState extends State<Home> {
   List _todoList = [];
   Map<String, dynamic> _lastRemoved = Map();
   int _lastRemovedPos = 0;
-  TextEditingController _todoController = TextEditingController();
+  TextEditingController todoController = TextEditingController();
 
   @override
   void initState() {
@@ -46,7 +45,7 @@ class HomeState extends State<Home> {
               children: <Widget>[
                 Expanded(
                   child: TextField(
-                    controller: _todoController,
+                    controller: todoController,
                     decoration: const InputDecoration(
                       labelText: "Nova Tarefa",
                       labelStyle: TextStyle(color: Colors.blueAccent),
@@ -145,8 +144,8 @@ class HomeState extends State<Home> {
   void addTodo() {
     setState(() {
       Map<String, dynamic> newTodo = Map();
-      newTodo["title"] = _todoController.text;
-      _todoController.text = "";
+      newTodo["title"] = todoController.text;
+      todoController.text = "";
       newTodo["ok"] = false;
       _todoList.add(newTodo);
       _saveData();
